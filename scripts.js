@@ -50,3 +50,40 @@ const nameToProvince = names.reduce((obj, name, index) => {
   return obj;
 }, {});
 console.log(nameToProvince);
+
+
+
+console.log(
+  // Log Products
+  products.forEach(product => console.log(product.product)),
+
+  // Filter by Name Length
+  products.filter(product => product.product.length <= 5),
+
+  // Price Manipulation
+  products
+    .filter(product => product.price !== '' && product.price !== ' ')
+    .map(product => ({ ...product, price: Number(product.price) }))
+    .reduce((total, product) => total + product.price, 0),
+
+  // Concatenate Product Names
+  products.reduce((acc, product) => acc + product.product, ''),
+
+  // Find Extremes in Prices
+  (() => {
+    const pricedProducts = products
+      .filter(product => product.price !== '' && product.price !== ' ')
+      .map(product => ({ ...product, price: Number(product.price) }));
+    const highest = Math.max(...pricedProducts.map(p => p.price));
+    const lowest = Math.min(...pricedProducts.map(p => p.price));
+    const highestProduct = pricedProducts.find(p => p.price === highest).product;
+    const lowestProduct = pricedProducts.find(p => p.price === lowest).product;
+    return `Highest: ${highestProduct}. Lowest: ${lowestProduct}`;
+  })(),
+
+  // Object Transformation
+  products.reduce((acc, product) => {
+    acc[product.product] = { name: product.product, cost: product.price };
+    return acc;
+  }, {})
+);
