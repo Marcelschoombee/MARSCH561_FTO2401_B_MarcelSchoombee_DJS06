@@ -35,3 +35,11 @@ console.log(nameLengths);
 // Used sort to alphabetically sort the provinces.
 const sortedProvinces = [...provinces].sort();
 console.log(sortedProvinces);
+
+// Used filter to remove provinces containing "Cape" and log the count of remaining provinces.
+const filteredProvinces = provinces.filter(province => !province.includes('Cape'));
+console.log(filteredProvinces.length);
+
+// Find names containing S using  .map and .includes 
+const containsS = names.map(name => name.toLowerCase().includes('s'));
+console.log(containsS);
