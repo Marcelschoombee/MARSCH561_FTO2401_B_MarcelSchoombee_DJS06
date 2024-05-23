@@ -43,3 +43,10 @@ console.log(filteredProvinces.length);
 // Find names containing S using  .map and .includes 
 const containsS = names.map(name => name.toLowerCase().includes('s'));
 console.log(containsS);
+
+// Transform the names array into an object mapping names to their respective provinces.
+const nameToProvince = names.reduce((obj, name, index) => {
+  obj[name] = provinces[index];
+  return obj;
+}, {});
+console.log(nameToProvince);
